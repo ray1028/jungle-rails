@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
       @products << Product.find(item[:product_id])
     end
 
-    @products.each do |product|
-      @total += product[:price_cents] * product[:quantity]
+    @line_items.each do |line_item|
+      @total += line_item[:total_price_cents]
     end
   end
 
