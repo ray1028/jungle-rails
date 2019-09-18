@@ -2,6 +2,17 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @line_items = @order.line_items
+    @products = []
+    @total = 0
+    
+    @line_items.each do |item| 
+      @products << Product.find(item[:product_id])
+    end
+
+    @products.each do |product|
+      @total += product[:price_cents] * product[:quantity]
+    end
   end
 
   def create
@@ -48,8 +59,8 @@ class OrdersController < ApplicationController
       order.line_items.new(
         product: product,
         quantity: quantity,
-        item_price: humanized_money_with_symbol product.price,
-        total_price: humanized_money_with_symbol product.price * quantity
+        item_price: product.price,
+        total_price: product.price * quantity
       )
     end
     order.save!

@@ -8,6 +8,35 @@
     <h4>Thank you for your order!</h4>
   </div>
 
+  <table class="table table-bordered">
+    <thead>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <tbody>
+      <% @products.each do |product| %>
+      <tr>
+        <td><%= image_tag product.image.tiny %></td>
+        <td><%=product.name%></td>
+        <td><%=product.description%></td>
+        <td><%=product.quantity%></td>
+        <td><%=product.price%></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </thead>
+     
+    <tfoot>
+      <tr>
+        <th colspan="4">TOTAL:</th>
+          <th>
+            <%= humanized_money_with_symbol @total / 100.0  %>
+          </th>
+      </tr>
+    </tfoot>
+    <caption><strong>Order Details for <%=@order.email%></strong></caption>
+  </table>
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
-
 </section>
