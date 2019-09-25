@@ -68,7 +68,7 @@ RSpec.describe User, type: :model do
       it 'should return user if its a existing valid user' do 
         user = User.new(name:'ray' , email:'123@test.com', password: 'hello123', password_confirmation: 'hello123')
         user.save
-        testingUser = User.authenticate_with_credentials(user.email, user.password)
+        testingUser = User.authenticate_with_credentials('123@test.com', user.password)
         expect(testingUser.password_digest).to_not be_empty
       end
       it 'should return user if user enters extra spaces in email when logging in ' do 

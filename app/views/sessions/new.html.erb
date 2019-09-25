@@ -2,8 +2,8 @@
 
 <div class="form-group">
 <%= form_tag '/login' do %>
-  Email: <%= text_field_tag :email, class: "form-control"%>
-  Password: <%= password_field_tag :password, class: 'form-control' %>
-  <%= submit_tag "Submit" , class: 'btn btn-primary'%>
+  Email: <%= text_field_tag :email %>
+  Password: <%= password_field_tag :password  %>
+  <%= submit_tag "Submit" , :class  => 'btn btn-primary'%>
 <% end %>
 </div>
